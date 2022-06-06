@@ -1,4 +1,7 @@
 /**
+ * 
+ * TEST GITHUB
+ * 
  * @class Simulation_universe.
  * inheritance from Simulation class
  *
@@ -183,7 +186,6 @@ class Simulation_universe extends Simulation {
         let w0 = this.dark_energy.w_0;
         let w1 = this.dark_energy.w_1;
         let T = 0;
-        let omega_r = 0;
         let omega_m = 0;
         let omega_lambda = 0;
         this.is_single_cosmo=false;
@@ -200,7 +202,6 @@ class Simulation_universe extends Simulation {
         }
         if (model == "radiation") {
             this.is_single_radiation = true;
-            omega_r = 1;
             let c = this.constants.c;
             let h = this.constants.h;
             let pi = Math.PI;
@@ -208,9 +209,11 @@ class Simulation_universe extends Simulation {
             let k = this.constants.k;
             let H = this._H0parsec;
             T = Math.pow(45 * Math.pow(c, 5) * Math.pow(h, 3) / (64 * Math.pow(pi, 6) * G * Math.pow(k, 4)), 1 / 4) * Math.pow(H, 1 / 2);
+            /*
             let A = 45 * Math.pow(c, 2) * Math.pow(h, 3);
             let B = 64 * Math.pow(pi, 6) * G * Math.pow(k, 4);
             T = Math.pow(A / B, 1 / 4) * Math.pow(H, 1 / 2);
+            */
         }
         if (model == "curvature") {
             this.is_single_curvature = true;
@@ -739,7 +742,7 @@ class Simulation_universe extends Simulation {
         let infimum = z_1 / (1 + z_1);
         let supremum = z_2 / (1 + z_2);
         duration = this.simpson(this, this.integral_duration_substituated, infimum, supremum, 1000) / this._H0parsec;
-        return duration;
+        return -duration;
     }
     /**
      * Compute the distance between two cosmologics shift z
