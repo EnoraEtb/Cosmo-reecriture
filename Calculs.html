@@ -174,7 +174,7 @@
                     <br/>
 
                     <div>
-                        univ plat<span id="txt_univplat"></span>
+                        <span id="txt_univplat"></span>
                         <input id="flat_univ" type="checkbox" name="univ_plat" onChange="update_adjunct();"></input>
 
                     </div>
@@ -241,7 +241,7 @@
             <!-- Bouton calcul -->
 
                 <div id="plus" style="padding:10px">
-                <input id="bcalc_ord" type="button" onclick="calc_shift();ga('send', 'event', 'button', 'click', 'Calcul Annexe normal');" value="Calcul"></input>
+                <input id="bcalc_ord" type="button" onclick="calc_shift();photometry();ga('send', 'event', 'button', 'click', 'Calcul Annexe normal');" value="Calcul"></input>
                 <span style="display:none;color:blue;" id="resul_tps"></span>
                 <div id="gif" style="position:relative;display: inline-block;margin-left: 13px;"></div>
                 </div>
@@ -249,6 +249,7 @@
             </div>
 
             <!-- Resultats des calculs Geometriques -->
+
 
             <div id="box2">
 
@@ -260,7 +261,7 @@
                 <div id="calcul_dm">
                 <div>
                     <label for="dm1">d<sub>m<sub>1</sub></sub> =</label>
-                    <span id="show_dm1" style="display:none">
+                    <!-- <span id="show_dm1" style="display:none"> -->
                     <span id="dm1" style="color:blue" value="2"></span><span style="font-size:smaller"> m </span> =
                     <span id="dm1_pc" style="color:blue"></span>
                     <span style="font-size:smaller"> pc </span>=
@@ -271,7 +272,7 @@
 
                 <div>
                     <label for="dm2">d<sub>m<sub>2</sub></sub> =</label>
-                    <span id="show_dm2" style="display:none">
+                    <!-- <span id="show_dm2" style="display:none">  -->
                     <span id="dm2" style="color:blue"></span> <span style="font-size:smaller">m</span> =
                     <span id="dm2_pc" style="color:blue"></span><span style="font-size:smaller"> pc</span> =
                     <span id="dm2_ly" style="color:blue"></span><span style="font-size:smaller"> al</span>
@@ -281,17 +282,17 @@
 
                 <div>
                 <label for="dm">&Delta;d<sub>m</sub> =</label>
-                <span id="show_dm" style="display:none">
+                <!-- <span id="show_dm" style="display:none"> -->
                     <span id="dm" style="color:blue"></span><span style="font-size:smaller"> m </span>=
                     <span id="dm_pc" style="color:blue"></span><span style="font-size:smaller"> pc </span>=
-                    <span id="dm_diff_lum" style="color:blue"></span><span style="font-size:smaller"> al</span>
+                    <span id="dm_ly" style="color:blue"></span><span style="font-size:smaller"> al</span>
                 </span>
                 </div>
 
                 <div id="calcul_t">
                 <div>
                     <label for="tempsEmission">t<sub>1</sub>=</label>
-                    <span id="show_temi" style="display:none">
+                    <!-- <span id="show_temi" style="display:none">  -->
                     <span id="tempsEmission" style="color:blue"></span><span style="font-size:smaller"> a</span> =
                     <span id="tempsEmission_sec" style="color:blue"></span><span style="font-size:smaller"> s </span>
                     </span>
@@ -300,7 +301,7 @@
 
                 <div>
                     <label for="tempsReception">t<sub>2</sub>=</label>
-                    <span id="show_trecep" style="display:none">
+                    <!-- <span id="show_trecep" style="display:none">  -->
                     <span id="tempsReception" style="color:blue"></span><span style="font-size:smaller"> a </span>=
                     <span id="tempsReception_sec" style="color:blue"></span><span style="font-size:smaller"> s</span>
                     </span>
@@ -310,7 +311,7 @@
 
                 <div>
                     <label for="agebetween">&Delta;t =</label>
-                    <span id="show_dt" style="display:none">
+                    <!-- <span id="show_dt" style="display:none">  -->
                         <span id="agebetween" style="color:blue"></span><span style="font-size:smaller"> a</span> =
                         <span id="agebetween_sec" style="color:blue"></span><span style="font-size:smaller"> s</span>
                     </span>
@@ -332,7 +333,7 @@
 
                 <div class="desact_retour">
                     <label for="diametre">D =</label>
-                    <input id="diametre" value="" maxlength="17" type="text"><span style="font-size:smaller"> (m)</span>
+                    <input id="diameter" value="" maxlength="17" type="text"><span style="font-size:smaller"> (m)</span>
                     <input style="margin-left:15px;" type="button" value="--> θ" onClick="calcultheta();">
                 </div>
 
@@ -340,14 +341,14 @@
 
                 <div class="desact_retour">
                     <label for="diametrekpc">D =</label>
-                    <input id="diametrekpc" value="" maxlength="17" type="text"><span style="font-size:smaller"> (kpc)</span>
+                    <input id="diameterkpc" value="" maxlength="17" type="text"><span style="font-size:smaller"> (kpc)</span>
                     <input style="margin-left:15px;" type="button" value="--> θ" onClick="calculthetakpc();">
                 </div>
 
                 <br/>
 
                 <div class="desact_retour">
-                    <input style="margin-right:15px" type="button" value="D <--" onClick="calculD();calcul1Dkpc();">
+                    <input style="margin-right:15px" type="button" value="D <--" onClick="calculD();calculDkpc();">
                     <label for="theta"><span style="font-size:smaller">θ</span> =</label>
                     <input id="theta" value="" maxlength="17" type="text"> <span id="secondeArc">(Seconde d'arc)</span>
                 </div>
@@ -369,10 +370,12 @@
 
                     <div class="desact_retour">
                         <label for="dm_racine_dm">d<sub>m</sub> =</label>
-                        <input id="dm_racine_dm" value="0" maxlength="26" type="text"><span style="font-size:smaller"> (m)</span>
+                        <input id="dm_racine_dm" value="0" onChange="reverse_calculations();" maxlength="26" type="text"><span style="font-size:smaller"> (m)</span>
                         <label for="z_racine_dm">z =</label>
                         <span id="z_racine_dm" style="color:blue"></span>
                         <!--= <span id="dm1_pc" style="color:blue"></span> pc-->
+
+
                     </div>
 
                     <br/>
@@ -397,6 +400,7 @@
 
                     <div style="padding:10px" id="plus">
                         <input id="boutonCalculInverse" type="button" onclick="reverse_calculations();ga('send', 'event', 'button', 'click', 'Calcul Annexe Inverse');" value="Calcul"></input>
+                        
                     </div>
 
                 </div>
@@ -499,7 +503,7 @@
 
                     <div>
                         <label for="L_e">L<sub>e</sub> =</label>
-                        <span id="show_L_e" style="display:none">
+                        <!-- <span id="show_L_e" style="display:none">  -->
                             <span id="L_e" style="color:blue"></span>
                             <span style="font-size:smaller"> W.m<sup>-2</sup>.sr<sup>-1</sup></span>
                         </span>
@@ -508,19 +512,19 @@
                     <div id="calcul_dl">
                         <div>
                             <label for="dl">d<sub>L<sub>1</sub></sub> =</label>
-                            <span id="show_dl" style="display:none">
+                            <!-- <span id="show_dl" style="display:none">  -->
                                 <span id="dl" style="color:blue"></span><span style="font-size:smaller"> m = </span>
                                 <span id="dl_pc" style="color:blue"></span><span style="font-size:smaller"> pc = </span>
-                                <span id="dl_lum" style="color:blue"></span><span style="font-size:smaller"> al </span>
+                                <span id="dl_ly" style="color:blue"></span><span style="font-size:smaller"> al </span>
                             </span>
                         </div>
 
                         <div>
                             <label for="dl2">d<sub>L<sub>2</sub></sub> =</label>
-                            <span id="show_dl_2" style="display:none">
-                                <span id="dl_2" style="color:blue"></span><span style="font-size:smaller"> m = </span>
+                            <!-- <span id="show_dl_2" style="display:none">  -->
+                                <span id="dl2" style="color:blue"></span><span style="font-size:smaller"> m = </span>
                                 <span id="dl2_pc" style="color:blue"></span><span style="font-size:smaller"> pc = </span>
-                                <span id="dl2_lum" style="color:blue"></span><span style="font-size:smaller"> al </span>
+                                <span id="dl2_ly" style="color:blue"></span><span style="font-size:smaller"> al </span>
                             </span>
                         </div>
                     </div>
@@ -528,10 +532,10 @@
                     <div id="calcul_da">
                         <div>
                             <label for="dda">d<sub>a<sub>1</sub></sub> =</label>
-                            <span id="show_da" style="display:none">
+                            <!-- <span id="show_da" style="display:none"> -->
                                 <span id="dda" style="color:blue"></span><span style="font-size:smaller"> m = </span>
                                 <span id="dda_pc" style="color:blue"></span><span style="font-size:smaller"> pc = </span>
-                                <span id="dda_lum" style="color:blue"></span><span style="font-size:smaller"> al </span>
+                                <span id="dda_ly" style="color:blue"></span><span style="font-size:smaller"> al </span>
                             </span>
                         </div>
 
@@ -548,14 +552,14 @@
                     <div id="calcul_E">
                         <div>
                             <label for="E_e">E<sub>e<sub>1</sub></sub> =</label>
-                            <span id="show_E_e" style="display:none">
+                            <!-- <span id="show_E_e" style="display:none">  -->
                                 <span id="E_e" style="color:blue"></span>
                                 <span style="font-size:smaller"> W.m<sup>-2</sup></span>
                             </span>
                         </div>
                         <div>
                             <label for="E_e2">E<sub>e<sub>2</sub></sub> =</label>
-                            <span id="show_E_e_2" style="display:none">
+                            <!-- <span id="show_E_e_2" style="display:none">  -->
                                 <span id="E_e_2" style="color:blue"></span>
                                 <span style="font-size:smaller"> W.m<sup>-2</sup></span>
                             </span>
@@ -873,7 +877,7 @@
         </div>		
 
         <script>
-            transfert_calcu(update_omegar0_calc, 1);
+            //transfert_calcu(update_omegar0_calc, 1);
             calculs = 0;
             texteUniversCalculs();
         </script>

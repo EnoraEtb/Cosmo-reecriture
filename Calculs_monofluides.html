@@ -12,6 +12,8 @@
   <title id="calculs_annexes">Calcul annexe pour monofluides avec constante cosmologique</title>
   <!-- ----------------------------- -->
   <!-- Scripts de calculs -->
+
+  <!--
   <script src="js/Simulation_Univers/Calculs_annexes/Calcu_mono.js"></script>
   <script src="js/Simulation_Univers/Calculs_annexes/bisection_root_finder.js"></script>
   <script src="js/Simulation_Univers/Get_para.js"></script>
@@ -20,6 +22,18 @@
   <script src="js/Simulation_Univers/Calculs_annexes/Simpson_deg2_6interval.js"></script>
   <script src="js/Simulation_Univers/Update_Constants.js"></script>
   <script src="js/Langues/gestion_langues.js"></script>
+  -->
+
+
+<script src="./js/Langues/gestion_langues.js"></script>
+
+<script src="./js/Simulation_Univers/Get_para.js"></script>
+<script src="./js/Simulation_Univers/canvas_min.js"></script>
+
+<script src="./js/simulation.js"></script>
+<script src="./js/simulation_universe.js"></script>
+<script src="./js/constants.js"></script>
+<script src="./js/main_universe.js"></script>
 
 
   <!-- Latex dans Html -->
@@ -112,9 +126,17 @@
 <!-- Paramètres généraux -->
 
         <span id="txt_parametres" style="font-weight:bold"></span>
+        <!--
         <div>
           <p id="affichage"></p>
         </div>
+      -->
+      <div>
+        <br>
+        <label for="omegam0">&Omega;<sub>m0</sub> =</label>
+        <span id="resultat_omegam0" style="color:blue;"></span><span style="font-size:smaller"> Kg.m<sup>-3</sup></span>
+        <span></span>
+      </div>
 
         <div>
           <label for="rholambda">&rho;<sub>&Lambda;</sub> =</label>
@@ -620,10 +642,10 @@
 
   <!-- Obtention des paramètres de la page simulation -->
   <script>
-    transfert_calcu(rien, 1);
-    afficheValeurs_calcul_mono();
+    //transfert_calcu(rien, 1);
+    //afficheValeurs_calcul_mono();
     calculs = 0;
-    update_rho();
+    //update_rho();
     texteUniversCalculs();
   </script>
 

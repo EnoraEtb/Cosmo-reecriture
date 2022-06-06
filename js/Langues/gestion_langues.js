@@ -463,6 +463,7 @@ function texteUniversCalculs() {
 		document.getElementById("temission").innerHTML = texte.page_univers_calculs.temission;
 		document.getElementById("treception").innerHTML = texte.page_univers_calculs.treception;
 	}
+	
 }
 
 function texteUniversNoire() {

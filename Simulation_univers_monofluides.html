@@ -128,7 +128,7 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
     <input type="hidden" id="typeannee" name="typeannee" value="Grégorienne" />
 
     <!-- Envoi -->
-    <input class="myButton" id="calc" type="button" onclick="ouvre_calcMonofluide();" value="Calculs Annexes"></input>
+    <input class="myButton" id="calc" type="button" onclick="open_window_adjunct_single_fluids();" value="Calculs Annexes"></input>
 
   </div><br/>
   <p id="txt_titre" style="font-size:20px;font-weight:bold;text-align: center"></p>
@@ -147,7 +147,7 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
     <p id="txt_entrees" style="font-size:16px;font-weight:bold;text-align: center"></p>
     <div>
       <div class="inp">
-        <select id="type_valeurs" onchange="update_omega_mono();updateTemperatureWeinberg();afficheSerie();parametres();update_universe_mono();calcul_time();">
+        <select id="type_valeurs" onchange="update_omega_mono();updateTemperatureWeinberg();afficheSerie();parametres();calcul_time();">
                   <option id="txt_choix" value="0" selected></option>
                   <option id="txt_einstein" value="1"></option>
                   <option id="txt_weinberg" value="2"></option>
@@ -179,6 +179,8 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
       &Omega;<sub>k0</sub>=<span id="omegak"></span>;</br>
       &Omega;<sub>&Lambda;0</sub>=<span id="resultat_omegalambda0"></span>;
       &Omega;<sub>m0</sub>=<span id="resultat_omegam0"></span>;</br>
+      T<sub>0</sub>=<span id="temperature"></span>;</br>
+
       <span id="txt_tempsBB" style="font-weight:bold;text-decoration: underline;"></span></br>
       <span id="resultat_ageunivers_ga"></span>Ga=
       <span id="resultat_ageunivers_s"></span>s<br/>
@@ -228,6 +230,20 @@ Source: http://www.cssscript.com/multi-level-toggle-responsive-navigation-menu-u
   </div>
 
   <div id="enregistrer">
+    <div>
+			<label> a<sub>min</sub> =  </label>
+			<input id="ami" type="text" value="0" onfocus="this.oldvalue = this.value;" onchange="
+				if ( this.value < 0 || this.value > Number(document.getElementById('ama').value)) {
+					this.value = this.oldvalue;
+				}
+			"></input>&nbsp;&nbsp;
+			<label> a<sub>max</sub> = </label>
+			<input id="ama" type="text" value="5" onfocus="this.oldvalue = this.value;" onchange="
+				if ( this.value < 0 || this.value < Number(document.getElementById('ami').value)) {
+					this.value = this.oldvalue;
+				}
+			"></input>&nbsp;&nbsp;
+		</div>
     <span id="txt_enregistrerEn" style="font-weight:bold;"></span>
     <select id="format_enr">
 	<option selected>png</option>
