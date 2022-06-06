@@ -219,8 +219,9 @@ function update_flat() {
 
 //Opens the Adjunct computation window for the Cosmological constant part
 function open_window_adjunct(){
+    storage();
     window.open("Calculs.html", "childWindow", DimFen1500x900Res);
-    document.getElementById("txt_univplat").innerHTML = true;
+    //document.getElementById("txt_univplat").innerHTML = true;
 
 }
 
@@ -236,12 +237,16 @@ function open_window_adjunct_single_fluids(){
 
 //-------------------------------------------ADJUNCT COMPUTATION for the Cosmological constant-----------------------
 
+function calc_rho(){
+    document.getElementById("rhom").innerHTML =universe.calcul_rho_m().toExponential(8);
+    document.getElementById("rhor").innerHTML =universe.calcul_rho_r().toExponential(8);
+    document.getElementById("rholambda").innerHTML = universe.calcul_rho_lambda().toExponential(8);
+}
 
 function update_adjunct(){
    update_universe_parameters();
-   document.getElementById("rhom").innerHTML =universe.calcul_rho_m().toExponential(8);
-   document.getElementById("rhor").innerHTML =universe.calcul_rho_r().toExponential(8);
-   document.getElementById("rholambda").innerHTML = universe.calcul_rho_lambda().toExponential(8);
+   calc_rho();
+
 
 }
 
@@ -337,6 +342,23 @@ function calculD(){
 
 }
 
+//This function stores the values we will reuse for the adjunct calculations
+function storage(){
+    sessionStorage.setItem("T0", universe.temperature);
+    sessionStorage.setItem("H0", universe.hubble_cst);
+    sessionStorage.setItem("omegam0", universe.matter_parameter);
+    sessionStorage.setItem("omegalambda0", universe.dark_energy.parameter_value);
+}
+
+function transfer_param(){
+    document.getElementById("T0").value = sessionStorage.getItem("T0");
+    document.getElementById("H0").value = sessionStorage.getItem("H0");
+    document.getElementById("omegam0").value = sessionStorage.getItem("omegam0");
+    document.getElementById("omegalambda0").value = sessionStorage.getItem("omegalambda0");
+    update_universe_results();
+    calc_rho();
+}
+
 
 function reverse_calculations(){
     let dm=document.getElementById("dm_racine_dm").value;
@@ -350,7 +372,6 @@ function photometry(){
     let z2= Number(document.getElementById("z2").value);
     let dm2 = Number(universe.metric_distance(z2));
     let I = Number(document.getElementById("i_e").value);
-    let theta = Number(universe.luminosity_distance(z1,dm1).meter)//universe.metric_distance(z1);//Number(document.getElementById("theta").value);
 
     document.getElementById("L_e").innerHTML = universe.luminosity(I).toExponential(4);
     document.getElementById("dl").innerHTML = universe.luminosity_distance(z1,dm1).meter.toExponential(4);
@@ -363,7 +384,7 @@ function photometry(){
     document.getElementById("dda_pc").innerHTML = universe.apparent_diameter(z1,dm1).pc.toExponential(4);
     document.getElementById("dda_ly").innerHTML = universe.apparent_diameter(z1,dm1).ly.toExponential(4);
     document.getElementById("E_e").innerHTML = universe.brightness(z1,universe.luminosity(I),dm1).toExponential(4);
-    document.getElementById("E_e_2").innerHTML = universe.brightness(z1,universe.luminosity(I),dm1).toExponential(4);
+    document.getElementById("E_e_2").innerHTML = universe.brightness(z2,universe.luminosity(I),dm2).toExponential(4);
 
 
 
