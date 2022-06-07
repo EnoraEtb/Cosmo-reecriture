@@ -16,6 +16,11 @@ let mono=false;
 function update_universe_results() {
     document.getElementById("resultat_omegak0").innerHTML = universe.calcul_omega_k().toExponential(4);
     document.getElementById("resultat_omegar0").innerHTML = universe.calcul_omega_r().toExponential(4);
+    /*if (mono){
+        document.getElementById("resultat_omegak0").innerHTML = universe.calcul_omega_k();
+        document.getElementById("resultat_omegar0").innerHTML = universe.calcul_omega_r();
+    }
+    */
 }
 
     
@@ -226,8 +231,8 @@ function open_window_adjunct(){
 }
 
 function open_window_adjunct_single_fluids(){
+    storage();
     window.open("Calculs_monofluides.html", "childWindow", DimFen1500x900Res);
-    update_universe_mono();
     //document.getElementById("txt_univplat").innerHTML = true;
 
 }
@@ -348,6 +353,7 @@ function storage(){
     sessionStorage.setItem("H0", universe.hubble_cst);
     sessionStorage.setItem("omegam0", universe.matter_parameter);
     sessionStorage.setItem("omegalambda0", universe.dark_energy.parameter_value);
+
 }
 
 function transfer_param(){
@@ -355,9 +361,18 @@ function transfer_param(){
     document.getElementById("H0").value = sessionStorage.getItem("H0");
     document.getElementById("omegam0").value = sessionStorage.getItem("omegam0");
     document.getElementById("omegalambda0").value = sessionStorage.getItem("omegalambda0");
+    universe.temperature = Number(document.getElementById("T0").value);
+    universe.hubble_cst = Number(document.getElementById("H0").value);
+    universe.matter_parameter = Number(document.getElementById("omegam0").value);
+    universe.dark_energy.parameter_value = Number(document.getElementById("omegalambda0").value);
     update_universe_results();
     calc_rho();
 }
+
+
+function transfer_param_mono(){
+}
+
 
 
 function reverse_calculations(){
