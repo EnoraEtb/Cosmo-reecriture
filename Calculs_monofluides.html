@@ -134,11 +134,28 @@
       <div>
         <br>
         <label for="omegam0">&Omega;<sub>m0</sub> =</label>
-        <span id="resultat_omegam0" style="color:blue;"></span><span style="font-size:smaller"> Kg.m<sup>-3</sup></span>
+        <span id="omegam0" style="color:blue;"></span><span style="font-size:smaller"></span> ; 
         <span></span>
+        <label for="omegar0">&Omega;<sub>r0</sub> =</label>
+        <span id="resultat_omegar0" style="color:blue;"></span><span style="font-size:smaller"></span>
+        <span></span>
+        <br>
+        <label for="omegalambda0">&Omega;<sub>&Lambda;0</sub> =</label>
+        <span id="omegalambda0" style="color:blue;"></span><span style="font-size:smaller"></span> ; 
+        <span></span>
+        <label for="resultat_omegak0">&Omega;<sub>k0</sub> =</label>
+        <span id="resultat_omegak0" style="color:blue;"></span><span style="font-size:smaller"></span>
+        <span></span> <br>
+        <label for="T0">T<sub>0</sub> =</label>
+        <span id="T0" style="color:blue;"></span><span style="font-size:smaller"> K</span><br>
+        <span></span>
+        <label for="H0">H<sub>0</sub> =</label>
+        <span id="H0" style="color:blue;"></span><span style="font-size:smaller"> km.s<sup>-1</sup>.Mpc<sup>-1</sup></span><br>
+
       </div>
 
         <div>
+          <br>
           <label for="rholambda">&rho;<sub>&Lambda;</sub> =</label>
           <span id="rholambda" style="color:blue;"></span><span style="font-size:smaller"> Kg.m<sup>-3</sup></span>
           <span></span>
@@ -189,7 +206,7 @@
 <!-- Bouton calcul -->
 
         <div id="plus" style="padding:10px">
-          <input id="bcalc_ord" type="button" onclick="lance_calc(0);ga('send', 'event', 'button', 'click', 'Calcul Annexe normal');" value="Calcul"></input>
+          <input id="bcalc_ord" type="button" onclick="calc_shift();lance_calc(0);ga('send', 'event', 'button', 'click', 'Calcul Annexe normal');" value="Calcul"></input>
           <span style="display:none;color:blue;" id="resul_tps"></span>
           <div id="gif" style="position:relative;display: inline-block;margin-left: 13px;"></div>
         </div>
@@ -209,7 +226,7 @@
         <div id="calcul_dm">
           <div>
             <label for="dm1">d<sub>m<sub>1</sub></sub> =</label>
-            <span id="show_dm1" style="display:none">
+            <!-- <span id="show_dm1" style="display:none">  -->
               <span id="dm1" style="color:blue"></span><span style="font-size:smaller"> m </span> =
               <span id="dm1_pc" style="color:blue"></span>
               <span style="font-size:smaller"> pc </span>=
@@ -281,15 +298,15 @@
 
           <div class="desact_retour">
             <label for="diametre">D =</label>
-            <input id="diametre" value="" maxlength="17" type="text"><span style="font-size:smaller"> (m)</span>
-            <input style="margin-left:15px;" type="button" value="--> θ" onClick="calcultheta();">
+            <input id="diameter" value="" maxlength="17" type="text"><span style="font-size:smaller"> (m)</span>
+            <input style="margin-left:15px;" type="button" value="--> &Phi;" onClick="calcultheta();">
           </div>
 
           <br/>
 
           <div class="desact_retour">
             <input style="margin-right:15px" type="button" value="D <--" onClick="calculD();">
-            <label for="theta"><span style="font-size:smaller">θ</span> =</label>
+            <label for="theta"><span style="font-size:smaller">&Phi;</span> =</label>
             <input id="theta" value="" maxlength="17" type="text"> <span id="secondeArc">(Seconde d'arc)</span>
           </div>
         </div>
@@ -646,6 +663,7 @@
     //afficheValeurs_calcul_mono();
     calculs = 0;
     //update_rho();
+    transfer_param_mono();
     texteUniversCalculs();
   </script>
 

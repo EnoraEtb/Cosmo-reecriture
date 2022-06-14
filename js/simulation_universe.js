@@ -790,6 +790,7 @@ class Simulation_universe extends Simulation {
         else {
             distance = Number(dm);
         }
+
         let add = this.angular_diameter_distance(z, distance);
         return 206265 * Number(D) / add;
     }

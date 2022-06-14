@@ -33,6 +33,7 @@ function calcul_time(){
 
 
 function update_universe_parameters() {
+    mono=false;
     update_universe_rayonment();
     update_flat();
     universe.temperature = Number(document.getElementById("T0").value);
@@ -231,7 +232,7 @@ function open_window_adjunct(){
 }
 
 function open_window_adjunct_single_fluids(){
-    storage();
+    storage_mono();
     window.open("Calculs_monofluides.html", "childWindow", DimFen1500x900Res);
     //document.getElementById("txt_univplat").innerHTML = true;
 
@@ -257,10 +258,16 @@ function update_adjunct(){
 
 //Computes the calculus linked to the cosmological shifts
 function calc_shift(){
+    
+    if (!mono){
     update_adjunct();
+    }
+    
     let z1 = Number(document.getElementById("z1").value);
     let z2 = Number(document.getElementById("z2").value);
-    let dm1 =universe.metric_distance(z1); 
+    if (mono){
+    let dm1 = universe.metric_distance(z1);
+    document.getElementById("dm1").innerHTML = 5; }
     let dm2 = universe.metric_distance(z2); 
     let dm = universe.delta_dm(z1,z2);
 
@@ -280,7 +287,7 @@ function calc_shift(){
     document.getElementById("Okz2").innerHTML = universe.omega_k_shift(z2).toExponential(4);
 
     //Geometry
-    document.getElementById("dm1").innerHTML = dm1.toExponential(4);
+    //document.getElementById("dm1").innerHTML = dm1.toExponential(4);
     document.getElementById("dm1_pc").innerHTML = universe.meter_to_parsec(dm1).toExponential(4);
     document.getElementById("dm1_ly").innerHTML = universe.meter_to_light_year(dm1).toExponential(4);
     document.getElementById("dm2").innerHTML = dm2.toExponential(4);
@@ -329,7 +336,7 @@ function calculthetakpc(){
 }
 
 function calculD(){
-    let theta = document.getElementById("theta").value;
+    let theta = Number(document.getElementById("theta").value);
     let z;
     //the user can chose the value of z that will be used
     if (document.getElementById("z1_checkbox").checked){
@@ -338,10 +345,10 @@ function calculD(){
     if (document.getElementById("z2_checkbox").checked){
         z = Number(document.getElementById("z2").value);
     }
-    let dm = universe.metric_distance(z);
+    let dm = Number(universe.metric_distance(z));
     let D = universe.D(theta,z,dm);
-    document.getElementById("diameter").value = D.toExponential(2);
-    document.getElementById("diameterkpc").value = universe.meter_to_kiloparsec(D).toExponential(2);
+    document.getElementById("diameter").value = D.m.toExponential(2);
+    document.getElementById("diameterkpc").value = D.kpc.toExponential(2);
 
 
 
@@ -356,7 +363,26 @@ function storage(){
 
 }
 
+function storage_mono(){
+    let model;
+    sessionStorage.setItem("H0",universe.hubble_cst);
+    if (universe.is_single_matter){
+        model="matter";
+    }
+    if (universe.is_single_cosmo){
+        model="cosmo_cst";
+    }
+    if (universe.is_single_curvature){
+        model="curvature";
+    }    
+    if (universe.is_single_radiation){
+        model="radiation";
+    }
+    sessionStorage.setItem("modele", model);
+}
+
 function transfer_param(){
+    mono=false;
     document.getElementById("T0").value = sessionStorage.getItem("T0");
     document.getElementById("H0").value = sessionStorage.getItem("H0");
     document.getElementById("omegam0").value = sessionStorage.getItem("omegam0");
@@ -371,6 +397,25 @@ function transfer_param(){
 
 
 function transfer_param_mono(){
+    mono=true;
+    let modele=sessionStorage.getItem("modele");
+    universe.hubble_cst = sessionStorage.getItem("H0");
+    universe.single_fluid(modele);
+    document.getElementById("omegam0").innerHTML = universe.matter_parameter;
+    document.getElementById("omegalambda0").innerHTML = universe.dark_energy.parameter_value;
+    
+    document.getElementById("resultat_omegak0").innerHTML = universe.calcul_omega_k();
+    document.getElementById("resultat_omegar0").innerHTML = universe.calcul_omega_r();
+
+    document.getElementById("T0").innerHTML =universe.temperature;
+    //We round off the result only if T0 isn't zero
+    if (universe.temperature !==0 ){
+        document.getElementById("T0").innerHTML =universe.temperature.toExponential(4);
+    }
+    document.getElementById("H0").innerHTML =universe.hubble_cst;
+    calc_rho();
+
+
 }
 
 
