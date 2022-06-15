@@ -3,6 +3,7 @@
 //---------------------------------COSMOLOGICAL CONSTANT--------------------------------------------------------------//
 
 //Creation of the universe simulation that will be used for the whole website
+
 let universe = new Simulation_universe("universe");
 
 //this simulation will only be used to compute the scale factor
@@ -265,9 +266,8 @@ function calc_shift(){
     
     let z1 = Number(document.getElementById("z1").value);
     let z2 = Number(document.getElementById("z2").value);
-    if (mono){
+
     let dm1 = universe.metric_distance(z1);
-    document.getElementById("dm1").innerHTML = 5; }
     let dm2 = universe.metric_distance(z2); 
     let dm = universe.delta_dm(z1,z2);
 
@@ -443,6 +443,9 @@ function photometry(){
     document.getElementById("dda").innerHTML = universe.apparent_diameter(z1,dm1).meter.toExponential(4);
     document.getElementById("dda_pc").innerHTML = universe.apparent_diameter(z1,dm1).pc.toExponential(4);
     document.getElementById("dda_ly").innerHTML = universe.apparent_diameter(z1,dm1).ly.toExponential(4);
+    document.getElementById("dda_2").innerHTML = universe.apparent_diameter(z2,dm2).meter.toExponential(4);
+    document.getElementById("dda2_pc").innerHTML = universe.apparent_diameter(z2,dm2).pc.toExponential(4);
+    document.getElementById("dda2_ly").innerHTML = universe.apparent_diameter(z2,dm2).ly.toExponential(4);
     document.getElementById("E_e").innerHTML = universe.brightness(z1,universe.luminosity(I),dm1).toExponential(4);
     document.getElementById("E_e_2").innerHTML = universe.brightness(z2,universe.luminosity(I),dm2).toExponential(4);
 
